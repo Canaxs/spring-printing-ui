@@ -30,7 +30,10 @@
       <div class="carousel slide h-100" data-ride="carousel" id="carouselExampleControls" *ngIf="printModel">
         <div class="carousel-inner h-100">
           <div class="carousel-item h-100" *ngFor="let image of imageResponses;index as i" [ngClass]="i === 0 ? 'active' : ''">
-            <img [src]="'data:image/jpg;base64,'+image.imageByte" class="d-block w-100" height="98%" alt="First slide">
+            <img [src]="'data:image/jpg;base64,'+image.imageByte" class="d-block w-100 slider-print" height="98%" alt="First slide">
+            <div class="overlay-slider" (click)="onClickSlider(image.templateName)">
+              <p>Choose this</p>
+            </div>
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -57,7 +60,7 @@
       <h2 class="fs-title">Select Printing Features</h2>
     </div>
     <div style="height: 70%">
-      <div class="receipt d-flex flex-wrap justify-content-center" *ngIf="printType === 'receipt'">
+      <div class="receipt d-flex flex-wrap justify-content-around" *ngIf="printType === 'receipt'">
         <label><input type="radio" name="features" value="KURUM TAHSILATI" checked (change)="onChangeFeature($event)">Institution collection</label>
         <label><input type="radio" name="features" value="IBAN'A TRANSFER" (change)="onChangeFeature($event)">Transfer to Iban number</label>
         <label><input type="radio" name="features" value="HESAPTAN HESABA HAVALE" (change)="onChangeFeature($event)">Account to Account Transfer</label>
@@ -79,36 +82,56 @@
     <div style="height: 70%">
       <div *ngIf="printType === 'receipt'" class="form-receipt">
         <div class="d-flex flex-column w-50">
-          <span>Başlık: <span class="float-right mr-4">{{printFormOne.writingAreaTitle}}</span></span>
-          <span>İsim: <input type="text" name="name" placeholder="İsim" /></span>
-          <span>Soyisim: <input type="text" name="surname" placeholder="Soyisim" /></span>
-          <span>Yaşadığınız Şehir: <input type="text" name="addressCity" placeholder="Şehir" /></span>
-          <span>İlçe: <input type="text" name="addressCounty" placeholder="İlçe" /></span>
-          <span>Cadde: <input type="text" name="addressStreet" placeholder="Cadde" /></span>
-          <span>Sokak / D / No: <input type="text" name="address" placeholder="Açık Adres" /></span>
-          <span>IBAN: <input type="text" name="ibanNumber" placeholder="IBAN" /></span>
-          <span>Şube Adı: <input type="text" name="branchName" placeholder="Şube Adı" /></span>
-          <span>Hesap No: <input type="text" name="accountNumber" placeholder="Hesap Numarası" /></span>
+          <span>Başlık: <span class="float-right mr-4">{{printingFormArea[printFANum].writingAreaTitle}}</span></span>
+          <span>İsim: <input type="text" placeholder="İsim" id="name" value=" "/></span>
+          <span>Soyisim: <input type="text" name="surname" placeholder="Soyisim" id="surname" value=" "/></span>
+          <span>Yaşadığınız Şehir: <input type="text" name="addressCity" placeholder="Şehir" id="addressCity" value=""/></span>
+          <span>İlçe: <input type="text" name="addressCounty" placeholder="İlçe" id="addressCounty" value=" "/></span>
+          <span>Cadde: <input type="text" name="addressStreet" placeholder="Cadde" id="addressStreet" value=" "/></span>
+          <span>Sokak / D / No: <input type="text" name="address" placeholder="Açık Adres" id="address" value=" "/></span>
+          <span>IBAN: <input type="text" name="ibanNumber" placeholder="IBAN" id="ibanNumber" value="0"/></span>
+          <span>Şube Adı: <input type="text" name="branchName" placeholder="Şube Adı" id="branchName" value=" "/></span>
+          <span>Hesap No: <input type="text" name="accountNumber" placeholder="Hesap Numarası" id="accountNumber" value="0"/></span>
         </div>
         <div class="d-flex flex-column w-50 ml-3">
-          <span>{{printFormOne.writingArea1}}<input type="text" name="writingArea1" /></span>
-          <span>{{printFormOne.writingArea2}}<input type="text" name="writingArea2" /></span>
-          <span>{{printFormOne.writingArea3}}<input type="text" name="writingArea3" /></span>
-          <span>{{printFormOne.writingArea4}}<input type="text" name="writingArea4" /></span>
-          <span *ngIf="printFormOne.writingArea5 != ''">{{printFormOne.writingArea5}}<input type="text" name="writingArea5" /></span>
-          <span *ngIf="printFormOne.writingArea6 != ''">{{printFormOne.writingArea6}}<input type="text" name="writingArea6" /></span>
-          <span *ngIf="printFormOne.writingArea7 != ''">{{printFormOne.writingArea7}}<input type="text" name="writingArea7"  /></span>
-          <span *ngIf="printFormOne.writingArea8 != ''">{{printFormOne.writingArea8}}<input type="text" name="writingArea8"  /></span>
-          <span *ngIf="printFormOne.writingArea9 != ''">{{printFormOne.writingArea9}}<input type="text" name="writingArea9"  /></span>
+          <span>{{printingFormArea[printFANum].writingArea1}}<input type="text" name="writingArea1" id="writingArea1" value=" "/></span>
+          <span>{{printingFormArea[printFANum].writingArea2}}<input type="text" name="writingArea2" id="writingArea2" value=" "/></span>
+          <span>{{printingFormArea[printFANum].writingArea3}}<input type="text" name="writingArea3" id="writingArea3" value=" "/></span>
+          <span>{{printingFormArea[printFANum].writingArea4}}<input type="text" name="writingArea4" id="writingArea4" value=" "/></span>
+          <span [ngClass]="printingFormArea[printFANum].writingArea5 == '' ? 'd-none' : ''">{{printingFormArea[printFANum].writingArea5}}<input type="text" name="writingArea5" id="writingArea5" value=" "/></span>
+          <span [ngClass]="printingFormArea[printFANum].writingArea6 == '' ? 'd-none' : ''">{{printingFormArea[printFANum].writingArea6}}<input type="text" name="writingArea6" id="writingArea6" value=" "/></span>
+          <span [ngClass]="printingFormArea[printFANum].writingArea7 == '' ? 'd-none' : ''">{{printingFormArea[printFANum].writingArea7}}<input type="text" name="writingArea7"  id="writingArea7" value=" "/></span>
+          <span [ngClass]="printingFormArea[printFANum].writingArea8 == '' ? 'd-none' : ''">{{printingFormArea[printFANum].writingArea8}}<input type="text" name="writingArea8"  id="writingArea8" value=" "/></span>
+          <span [ngClass]="printingFormArea[printFANum].writingArea9 == '' ? 'd-none' : ''">{{printingFormArea[printFANum].writingArea9}}<input type="text" name="writingArea9"  id="writingArea9" value=" "/></span>
+          <span>Toplam Tutar: <input type="text" name="paymentTotal" placeholder="Hesap Numarası" id="paymentTotal" value="0"/></span>
         </div>
       </div>
       <div *ngIf="printType === 'invoice'">
-
+        <div class="d-flex flex-column w-50">
+          <span>Şirket Adı: <input type="text" name="dealerCompanyName" placeholder="Şehir" /></span>
+          <span>Şirketin Bağlı Olduğu Şehir: <input type="text" name="dealerAddressCity" placeholder="Şehir" /></span>
+          <span>Şirketin Bağlı Olduğu İlçe: <input type="text" name="dealerAddressCounty" placeholder="İlçe" /></span>
+          <span>Cadde / Sokak / No: <input type="text" name="dealerAddress" placeholder="Açık Adres" /></span>
+          <span>Şirket Telefon: <input type="text" name="dealerPhoneNumber" placeholder="IBAN" /></span>
+          <span>Şirket Mail: <input type="text" name="dealerMailAddress" placeholder="Şube Adı" /></span>
+          <span>Şirket VKN: <input type="text" name="dealerVKN" placeholder="Hesap Numarası" /></span>
+          <span>Şirket Ticaret No: <input type="text" name="dealerTradeNumber" placeholder="Hesap Numarası" /></span>
+        </div>
+        <div class="d-flex flex-column w-50">
+          <span>Müşteri Adı: <input type="text" name="customerName" placeholder="Şehir" /></span>
+          <span>Müşteri Soyadı: <input type="text" name="customerSurname" placeholder="Şehir" /></span>
+          <span>Müşterinin Bağlı Olduğu Şehir: <input type="text" name="customerAddressCity" placeholder="Şehir" /></span>
+          <span>Müşterinin Bağlı Olduğu İlçe: <input type="text" name="customerAddressCounty" placeholder="İlçe" /></span>
+          <span>Cadde / Sokak / No: <input type="text" name="customerAddress" placeholder="Açık Adres" /></span>
+          <span>Şirket Telefon: <input type="text" name="customerPhoneNumber" placeholder="IBAN" /></span>
+          <span>Şirket Mail: <input type="text" name="customerMailAddress" placeholder="Şube Adı" /></span>
+          <span>Şirket TCKN: <input type="text" name="customerTCKN" placeholder="Hesap Numarası" /></span>
+        </div>
       </div>
     </div>
     <div class="d-flex justify-content-center w-100 align-items-end" style="height: 20%">
       <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(3)"/>
-      <input type="button" name="next" class="next action-button" value="Next" (click)="onNext(3)"/>
+      <input type="button" name="next" class="next action-button" value="Next" (click)="onSubmit(3)"/>
     </div>
   </fieldset>
   <fieldset>

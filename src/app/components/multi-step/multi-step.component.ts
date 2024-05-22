@@ -3,8 +3,10 @@ import $ from 'jquery';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ImageResponse} from "../../models/ImageResponse";
 import {Observable} from "rxjs";
-import {map, tap} from "rxjs/operators";
-import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {MessageBoxService} from "../../service/message-box.service";
+import {environment} from "../../../environments/environment";
+import {ReceiptRequest} from "../../models/ReceiptRequest";
+import {NgModel} from "@angular/forms";
 
 @Component({
   selector: 'app-multi-step',
@@ -15,20 +17,11 @@ export class MultiStepComponent implements OnInit {
 
   printType: string = "receipt";
   printModel: boolean = false;
+  templateName: string;
+
   imageResponses: ImageResponse[];
   printFeature: string = "";
-  printFormOne = {
-    writingAreaTitle:"",
-    writingArea1: "",
-    writingArea2: "",
-    writingArea3: "",
-    writingArea4: "",
-    writingArea5: "",
-    writingArea6: "",
-    writingArea7: "",
-    writingArea8: "",
-    writingArea9: ""
-  };
+  printFANum: number = 0;
 
   printingFormArea = [
     {
@@ -83,7 +76,7 @@ export class MultiStepComponent implements OnInit {
   ]
 
 
-  constructor(private http: HttpClient,private sanitizer: DomSanitizer) {
+  constructor(private http: HttpClient,private messageBox:  MessageBoxService) {
   }
 
   ngOnInit(): void {
@@ -101,10 +94,8 @@ export class MultiStepComponent implements OnInit {
     });
     if(index === 2) {
       for(let i = 0;i<this.printingFormArea.length;i++) {
-        console.log("1");
         if(this.printingFormArea[i].writingAreaTitle === this.printFeature) {
-          this.printFormOne = this.printingFormArea[i];
-          console.log("2");
+          this.printFANum = i;
         }
       }
     }
@@ -122,8 +113,54 @@ export class MultiStepComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(index: number) {
+    this.onNext(index);
+    let fixArea = this.printingFormArea[this.printFANum];
+    console.log((document.getElementById("name") as HTMLInputElement).value);
+    let receiptRequest = {
+      title: fixArea.writingAreaTitle,
+      name: (<HTMLInputElement> document.getElementById("name")).value,
+      surname: (<HTMLInputElement> document.getElementById("surname")).value,
+      addressCity: (<HTMLInputElement> document.getElementById("addressCity")).value,
+      addressCounty: (<HTMLInputElement> document.getElementById("addressCounty")).value,
+      addressStreet: (<HTMLInputElement> document.getElementById("addressStreet")).value,
+      address: (<HTMLInputElement> document.getElementById("address")).value,
+      ibanNumber: (<HTMLInputElement> document.getElementById("ibanNumber")).value,
+      branchName: (<HTMLInputElement> document.getElementById("branchName")).value,
+      accountNumber: (<HTMLInputElement> document.getElementById("accountNumber")).value,
+      paymentTotal: (<HTMLInputElement> document.getElementById("paymentTotal")).value,
+      templateName: this.templateName,
+      writingAreaTitle: fixArea.writingAreaTitle,
+      writingArea1: fixArea.writingArea1+""+(<HTMLInputElement> document.getElementById("writingArea1")).value,
+      writingArea2: fixArea.writingArea2+""+(<HTMLInputElement> document.getElementById("writingArea2")).value,
+      writingArea3: fixArea.writingArea3+""+(<HTMLInputElement> document.getElementById("writingArea3")).value,
+      writingArea4: fixArea.writingArea4+""+(<HTMLInputElement> document.getElementById("writingArea4")).value,
+      writingArea5: fixArea.writingArea5+""+(<HTMLInputElement> document.getElementById("writingArea5")).value,
+      writingArea6: fixArea.writingArea6+""+(<HTMLInputElement> document.getElementById("writingArea6")).value,
+      writingArea7: fixArea.writingArea7+""+(<HTMLInputElement> document.getElementById("writingArea7")).value,
+      writingArea8: fixArea.writingArea8+""+(<HTMLInputElement> document.getElementById("writingArea8")).value,
+      writingArea9: fixArea.writingArea9+""+(<HTMLInputElement> document.getElementById("writingArea9")).value,
+    }
+    let invoiceRequest = {
 
+    }
+    console.log(receiptRequest);
+
+    let body = this.printType === 'receipt' ? receiptRequest : invoiceRequest;
+
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    headers = headers.set('Authorization','Basic cHJpbnQ6cHJpbnQ=');
+    let urlPrint = this.printType === 'receipt' ? 'print/getGuestReceiptPdf' : 'print/getGuestInvoicePdf';
+    this.http.post(environment.baseUrl + urlPrint,body,
+      {headers: headers,responseType: 'blob'}).subscribe((blob: Blob) => {
+      const file = new Blob([blob], {type: 'application/pdf'});
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL, '_blank', 'width=1000, height=1000');
+    });
+
+  }
+  fillReceipt() {
   }
 
   async onNextType(index: number) {
@@ -147,6 +184,16 @@ export class MultiStepComponent implements OnInit {
     let httpHeaders = {
       headers: new HttpHeaders().set('Authorization','Basic cHJpbnQ6cHJpbnQ=')
     }
-    return this.http.get<any>("http://localhost:8080/printing/print/getImages/"+this.printType,httpHeaders);
+    return this.http.get<any>(environment.baseUrl+"print/getImages/"+this.printType,httpHeaders);
+  }
+
+  onClickSlider(templateName: string) {
+    this.templateName = templateName;
+    if(this.templateName != null) {
+      this.messageBox.success("Template name: "+templateName+" SUCCESSFULLY SELECTED");
+    }
+    else {
+      this.messageBox.error("Error");
+    }
   }
 }

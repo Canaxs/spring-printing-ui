@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MultiStepComponent } from './components/multi-step/multi-step.component';
 import {HttpClientModule} from "@angular/common/http";
+import {ToastrModule} from "ngx-toastr";
+import {MessageBoxService} from "./service/message-box.service";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,10 +19,14 @@ import {HttpClientModule} from "@angular/common/http";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    FormsModule
   ],
-  providers: [HttpClientModule],
+  providers: [HttpClientModule,MessageBoxService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
