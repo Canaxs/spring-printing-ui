@@ -1,4 +1,4 @@
-<!-- multistep form -->
+<div class="d-flex justify-content-center">
 <form id="multistepsform">
   <!-- progressbar -->
   <ul id="progressbar">
@@ -9,53 +9,119 @@
     <li>Completed</li>
   </ul>
   <!-- fieldsets -->
-  <fieldset class="deneme" style="animation: .5s ease-in 1 forwards;transition: .5s ease">
-    <h2 class="fs-title">Choose edition type</h2>
-    <h3 class="fs-subtitle"></h3>
-    <label><input type="radio" name="print-type" value="receipt" checked >Receipt</label>
-    <label><input type="radio" name="print-type" value="invoice">Invoice</label>
-    <input type="button" name="next" class="next action-button" value="Next" (click)="onNext(0)"/>
-  </fieldset>
   <fieldset>
-    <h2 class="fs-title">Personal Details1</h2>
-    <h3 class="fs-subtitle">We will never sell it</h3>
-    <input type="text" name="fname" placeholder="First Name" />
-    <input type="text" name="lname" placeholder="Last Name" />
-    <input type="text" name="phone" placeholder="Phone" />
-    <textarea name="address" placeholder="Address"></textarea>
-    <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(1)"/>
+    <div style="height: 10%">
+      <h2 class="fs-title">Choose edition type</h2>
+    </div>
+    <div style="height: 70%;display: flex;justify-content: center;align-items: center">
+      <label><input type="radio" name="print-type" value="receipt" checked (change)="onChangeType($event)">Receipt</label>
+      <label><input type="radio" name="print-type" value="invoice" (change)="onChangeType($event)">Invoice</label>
+    </div>
+    <div class="d-flex justify-content-center w-100 align-items-end" style="height: 20%">
+        <input type="button" name="next" class="next action-button" value="Next" (click)="onNextType(0)"/>
+    </div>
+  </fieldset>
+  <fieldset style="height: 700px">
+    <div style="height: 10%">
+      <h2 class="fs-title">Select Printing Model</h2>
+    </div>
 
-    <input type="button" name="next" class="next action-button" value="Next" (click)="onNext(1)"/>
-  </fieldset>
-  <fieldset>
-    <h2 class="fs-title">Personal Details2</h2>
-    <h3 class="fs-subtitle">We will never sell it</h3>
-    <input type="text" name="fname" placeholder="First Name" />
-    <input type="text" name="lname" placeholder="Last Name" />
-    <input type="text" name="phone" placeholder="Phone" />
-    <textarea name="address" placeholder="Address"></textarea>
-    <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(2)"/>
+    <div style="height: 70%">
+      <div class="carousel slide h-100" data-ride="carousel" id="carouselExampleControls" *ngIf="printModel">
+        <div class="carousel-inner h-100">
+          <div class="carousel-item h-100" *ngFor="let image of imageResponses;index as i" [ngClass]="i === 0 ? 'active' : ''">
+            <img [src]="'data:image/jpg;base64,'+image.imageByte" class="d-block w-100" height="98%" alt="First slide">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="spinner-border text-secondary" role="status" *ngIf="!printModel">
+      </div>
+    </div>
 
-    <input type="button" name="next" class="next action-button" value="Next" (click)="onNext(2)"/>
-  </fieldset>
-  <fieldset>
-    <h2 class="fs-title">Personal Details3</h2>
-    <h3 class="fs-subtitle">We will never sell it</h3>
-    <input type="text" name="fname" placeholder="First Name" />
-    <input type="text" name="lname" placeholder="Last Name" />
-    <input type="text" name="phone" placeholder="Phone" />
-    <textarea name="address" placeholder="Address"></textarea>
-    <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(3)"/>
 
-    <input type="button" name="next" class="next action-button" value="Next" (click)="onNext(3)"/>
+    <div class="d-flex justify-content-center w-100 align-items-end" style="height: 20%">
+      <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(1)"/>
+      <input type="button" name="next" class="next action-button" value="Next" (click)="onNext(1)"/>
+    </div>
   </fieldset>
   <fieldset>
-    <h2 class="fs-title">Social Profiles</h2>
-    <h3 class="fs-subtitle">Your presence on the social network</h3>
-    <input type="text" name="twitter" placeholder="Twitter" />
-    <input type="text" name="facebook" placeholder="Facebook" />
-    <input type="text" name="gplus" placeholder="Google Plus" />
-    <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(4)"/>
-    <input type="submit" name="submit" class="submit action-button" value="Submit" />
+    <div style="height: 10%">
+      <h2 class="fs-title">Select Printing Features</h2>
+    </div>
+    <div style="height: 70%">
+      <div class="receipt d-flex flex-wrap justify-content-center" *ngIf="printType === 'receipt'">
+        <label><input type="radio" name="features" value="KURUM TAHSILATI" checked (change)="onChangeFeature($event)">Institution collection</label>
+        <label><input type="radio" name="features" value="IBAN'A TRANSFER" (change)="onChangeFeature($event)">Transfer to Iban number</label>
+        <label><input type="radio" name="features" value="HESAPTAN HESABA HAVALE" (change)="onChangeFeature($event)">Account to Account Transfer</label>
+        <label><input type="radio" name="features" value="HESAPTAN FAST" (change)="onChangeFeature($event)">Fast From Account</label>
+      </div>
+      <div class="invoice" *ngIf="printType === 'invoice'">
+        <label><input type="radio" name="features" value="receipt" checked (change)="onChangeFeature($event)">Invoice</label>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center w-100 align-items-end" style="height: 20%">
+      <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(2)"/>
+      <input type="button" name="next" class="next action-button" value="Next" (click)="onNext(2)"/>
+    </div>
+  </fieldset>
+  <fieldset style="height: 700px">
+    <div style="height: 10%">
+      <h2 class="fs-title">Printing Form</h2>
+    </div>
+    <div style="height: 70%">
+      <div *ngIf="printType === 'receipt'" class="form-receipt">
+        <div class="d-flex flex-column w-50">
+          <span>Başlık: <span class="float-right mr-4">{{printFormOne.writingAreaTitle}}</span></span>
+          <span>İsim: <input type="text" name="name" placeholder="İsim" /></span>
+          <span>Soyisim: <input type="text" name="surname" placeholder="Soyisim" /></span>
+          <span>Yaşadığınız Şehir: <input type="text" name="addressCity" placeholder="Şehir" /></span>
+          <span>İlçe: <input type="text" name="addressCounty" placeholder="İlçe" /></span>
+          <span>Cadde: <input type="text" name="addressStreet" placeholder="Cadde" /></span>
+          <span>Sokak / D / No: <input type="text" name="address" placeholder="Açık Adres" /></span>
+          <span>IBAN: <input type="text" name="ibanNumber" placeholder="IBAN" /></span>
+          <span>Şube Adı: <input type="text" name="branchName" placeholder="Şube Adı" /></span>
+          <span>Hesap No: <input type="text" name="accountNumber" placeholder="Hesap Numarası" /></span>
+        </div>
+        <div class="d-flex flex-column w-50 ml-3">
+          <span>{{printFormOne.writingArea1}}<input type="text" name="writingArea1" /></span>
+          <span>{{printFormOne.writingArea2}}<input type="text" name="writingArea2" /></span>
+          <span>{{printFormOne.writingArea3}}<input type="text" name="writingArea3" /></span>
+          <span>{{printFormOne.writingArea4}}<input type="text" name="writingArea4" /></span>
+          <span *ngIf="printFormOne.writingArea5 != ''">{{printFormOne.writingArea5}}<input type="text" name="writingArea5" /></span>
+          <span *ngIf="printFormOne.writingArea6 != ''">{{printFormOne.writingArea6}}<input type="text" name="writingArea6" /></span>
+          <span *ngIf="printFormOne.writingArea7 != ''">{{printFormOne.writingArea7}}<input type="text" name="writingArea7"  /></span>
+          <span *ngIf="printFormOne.writingArea8 != ''">{{printFormOne.writingArea8}}<input type="text" name="writingArea8"  /></span>
+          <span *ngIf="printFormOne.writingArea9 != ''">{{printFormOne.writingArea9}}<input type="text" name="writingArea9"  /></span>
+        </div>
+      </div>
+      <div *ngIf="printType === 'invoice'">
+
+      </div>
+    </div>
+    <div class="d-flex justify-content-center w-100 align-items-end" style="height: 20%">
+      <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(3)"/>
+      <input type="button" name="next" class="next action-button" value="Next" (click)="onNext(3)"/>
+    </div>
+  </fieldset>
+  <fieldset>
+    <div style="height: 10%">
+      <h2 class="fs-title">Completed</h2>
+    </div>
+    <div style="height: 70%">
+
+    </div>
+    <div class="d-flex justify-content-center w-100 align-items-end" style="height: 20%">
+      <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(4)"/>
+      <input type="submit" name="submit" class="submit action-button" value="Submit" />
+    </div>
   </fieldset>
 </form>
+</div>
