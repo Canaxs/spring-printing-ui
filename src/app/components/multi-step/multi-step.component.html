@@ -2,28 +2,28 @@
 <form id="multistepsform">
   <!-- progressbar -->
   <ul id="progressbar">
-    <li class="active">Printing Type</li>
-    <li>Printing Model</li>
-    <li>Printing Features</li>
-    <li>Printing Form</li>
-    <li>Completed</li>
+    <li class="active">Basım Türü</li>
+    <li>Basım Modeli</li>
+    <li>Basım Özellikleri</li>
+    <li>Basım Formu</li>
+    <li>Basım Al</li>
   </ul>
   <!-- fieldsets -->
   <fieldset>
     <div style="height: 10%">
-      <h2 class="fs-title">Choose edition type</h2>
+      <h2 class="fs-title">Basım türünü seçin</h2>
     </div>
     <div style="height: 70%;display: flex;justify-content: center;align-items: center">
-      <label><input type="radio" name="print-type" value="receipt" checked (change)="onChangeType($event)">Receipt</label>
-      <label><input type="radio" name="print-type" value="invoice" (change)="onChangeType($event)">Invoice</label>
+      <label><input type="radio" name="print-type" value="receipt" checked (change)="onChangeType($event)">Makbuz</label>
+      <label><input type="radio" name="print-type" value="invoice" (change)="onChangeType($event)">Fatura</label>
     </div>
     <div class="d-flex justify-content-center w-100 align-items-end" style="height: 20%">
-        <input type="button" name="next" class="next action-button" value="Next" (click)="onNextType(0)"/>
+        <input type="button" name="next" class="next action-button" value="İleri" (click)="onNextType(0)"/>
     </div>
   </fieldset>
   <fieldset style="height: 700px">
     <div style="height: 10%">
-      <h2 class="fs-title">Select Printing Model</h2>
+      <h2 class="fs-title">Basım Modelini Seçin</h2>
     </div>
 
     <div style="height: 70%">
@@ -32,7 +32,7 @@
           <div class="carousel-item h-100" *ngFor="let image of imageResponses;index as i" [ngClass]="i === 0 ? 'active' : ''">
             <img [src]="'data:image/jpg;base64,'+image.imageByte" class="d-block w-100 slider-print" height="98%" alt="First slide">
             <div class="overlay-slider" (click)="onClickSlider(image.templateName)">
-              <p>Choose this</p>
+              <p>Bu Modeli Seç</p>
             </div>
           </div>
         </div>
@@ -45,105 +45,195 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-      <div class="spinner-border text-secondary" role="status" *ngIf="!printModel">
+      <div class="spinner-border text-secondary" role="status" style="width: 100px;height: 100px;position: relative;top: 100px" *ngIf="!printModel">
+      </div>
+      <div class="loading loading02" style="top: 120px" *ngIf="!printModel">
+        <span>Y</span>
+        <span>Ü</span>
+        <span>K</span>
+        <span>L</span>
+        <span>E</span>
+        <span>N</span>
+        <span>İ</span>
+        <span>Y</span>
+        <span>O</span>
+        <span>R...</span>
       </div>
     </div>
-
-
     <div class="d-flex justify-content-center w-100 align-items-end" style="height: 20%">
-      <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(1)"/>
-      <input type="button" name="next" class="next action-button" value="Next" (click)="onNext(1)"/>
+      <input type="button" name="previous" class="previous action-button" value="Geri" (click)="onPrevious(1)"/>
+      <input type="button" name="next" class="next action-button" value="İleri" (click)="onNext(1)"/>
     </div>
   </fieldset>
   <fieldset>
     <div style="height: 10%">
-      <h2 class="fs-title">Select Printing Features</h2>
+      <h2 class="fs-title">Basım Özelliklerini Seçin</h2>
     </div>
     <div style="height: 70%">
       <div class="receipt d-flex flex-wrap justify-content-around" *ngIf="printType === 'receipt'">
-        <label><input type="radio" name="features" value="KURUM TAHSILATI" checked (change)="onChangeFeature($event)">Institution collection</label>
-        <label><input type="radio" name="features" value="IBAN'A TRANSFER" (change)="onChangeFeature($event)">Transfer to Iban number</label>
-        <label><input type="radio" name="features" value="HESAPTAN HESABA HAVALE" (change)="onChangeFeature($event)">Account to Account Transfer</label>
-        <label><input type="radio" name="features" value="HESAPTAN FAST" (change)="onChangeFeature($event)">Fast From Account</label>
+        <label><input type="radio" name="features" value="KURUM TAHSILATI" checked (change)="onChangeFeature($event)">KURUM TAHSILATI</label>
+        <label><input type="radio" name="features" value="IBAN'A TRANSFER" (change)="onChangeFeature($event)">IBAN'A TRANSFER</label>
+        <label><input type="radio" name="features" value="HESAPTAN HESABA HAVALE" (change)="onChangeFeature($event)">HESAPTAN HESABA HAVALE</label>
+        <label><input type="radio" name="features" value="HESAPTAN FAST" (change)="onChangeFeature($event)">HESAPTAN FAST</label>
       </div>
-      <div class="invoice" *ngIf="printType === 'invoice'">
-        <label><input type="radio" name="features" value="receipt" checked (change)="onChangeFeature($event)">Invoice</label>
+      <div class="invoice d-flex justify-content-center" *ngIf="printType === 'invoice'">
+        <label><input type="radio" name="features" value="receipt" checked (change)="onChangeFeature($event)">Fatura</label>
       </div>
     </div>
     <div class="d-flex justify-content-center w-100 align-items-end" style="height: 20%">
-      <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(2)"/>
-      <input type="button" name="next" class="next action-button" value="Next" (click)="onNext(2)"/>
+      <input type="button" name="previous" class="previous action-button" value="Geri" (click)="onPrevious(2)"/>
+      <input type="button" name="next" class="next action-button" value="İleri" (click)="onNext(2)"/>
     </div>
   </fieldset>
-  <fieldset style="height: 700px">
+  <fieldset [ngStyle]="{'height': printType != 'invoice' ? '700px' : 'auto'}">
     <div style="height: 10%">
-      <h2 class="fs-title">Printing Form</h2>
+      <h2 class="fs-title mb-3">Basım Formu</h2>
     </div>
     <div style="height: 70%">
       <div *ngIf="printType === 'receipt'" class="form-receipt">
         <div class="d-flex flex-column w-50">
-          <span>Başlık: <span class="float-right mr-4">{{printingFormArea[printFANum].writingAreaTitle}}</span></span>
-          <span>İsim: <input type="text" placeholder="İsim" id="name" value=" "/></span>
-          <span>Soyisim: <input type="text" name="surname" placeholder="Soyisim" id="surname" value=" "/></span>
-          <span>Yaşadığınız Şehir: <input type="text" name="addressCity" placeholder="Şehir" id="addressCity" value=""/></span>
-          <span>İlçe: <input type="text" name="addressCounty" placeholder="İlçe" id="addressCounty" value=" "/></span>
-          <span>Cadde: <input type="text" name="addressStreet" placeholder="Cadde" id="addressStreet" value=" "/></span>
-          <span>Sokak / D / No: <input type="text" name="address" placeholder="Açık Adres" id="address" value=" "/></span>
-          <span>IBAN: <input type="text" name="ibanNumber" placeholder="IBAN" id="ibanNumber" value="0"/></span>
-          <span>Şube Adı: <input type="text" name="branchName" placeholder="Şube Adı" id="branchName" value=" "/></span>
-          <span>Hesap No: <input type="text" name="accountNumber" placeholder="Hesap Numarası" id="accountNumber" value="0"/></span>
+          <span>Başlık: <span class="float-right mr-4">{{printingFormData[printFANum].title}}</span></span>
+          <span>İsim: <input type="text" placeholder="İsim" id="name"/></span>
+          <span>Soyisim: <input type="text" name="surname" placeholder="Soyisim" id="surname"/></span>
+          <span>Yaşadığınız Şehir: <input type="text" name="addressCity" placeholder="Şehir" id="addressCity"/></span>
+          <span>İlçe: <input type="text" name="addressCounty" placeholder="İlçe" id="addressCounty"/></span>
+          <span>Cadde: <input type="text" name="addressStreet" placeholder="Cadde" id="addressStreet"/></span>
+          <span>Sokak / D / No: <input type="text" name="address" placeholder="Açık Adres" id="address"/></span>
+          <span>IBAN: <input type="text" name="ibanNumber" placeholder="IBAN" id="ibanNumber"/></span>
+          <span>Şube Adı: <input type="text" name="branchName" placeholder="Şube Adı" id="branchName"/></span>
+          <span>Hesap No: <input type="text" name="accountNumber" placeholder="Hesap Numarası" id="accountNumber"/></span>
         </div>
         <div class="d-flex flex-column w-50 ml-3">
-          <span>{{printingFormArea[printFANum].writingArea1}}<input type="text" name="writingArea1" id="writingArea1" value=" "/></span>
-          <span>{{printingFormArea[printFANum].writingArea2}}<input type="text" name="writingArea2" id="writingArea2" value=" "/></span>
-          <span>{{printingFormArea[printFANum].writingArea3}}<input type="text" name="writingArea3" id="writingArea3" value=" "/></span>
-          <span>{{printingFormArea[printFANum].writingArea4}}<input type="text" name="writingArea4" id="writingArea4" value=" "/></span>
-          <span [ngClass]="printingFormArea[printFANum].writingArea5 == '' ? 'd-none' : ''">{{printingFormArea[printFANum].writingArea5}}<input type="text" name="writingArea5" id="writingArea5" value=" "/></span>
-          <span [ngClass]="printingFormArea[printFANum].writingArea6 == '' ? 'd-none' : ''">{{printingFormArea[printFANum].writingArea6}}<input type="text" name="writingArea6" id="writingArea6" value=" "/></span>
-          <span [ngClass]="printingFormArea[printFANum].writingArea7 == '' ? 'd-none' : ''">{{printingFormArea[printFANum].writingArea7}}<input type="text" name="writingArea7"  id="writingArea7" value=" "/></span>
-          <span [ngClass]="printingFormArea[printFANum].writingArea8 == '' ? 'd-none' : ''">{{printingFormArea[printFANum].writingArea8}}<input type="text" name="writingArea8"  id="writingArea8" value=" "/></span>
-          <span [ngClass]="printingFormArea[printFANum].writingArea9 == '' ? 'd-none' : ''">{{printingFormArea[printFANum].writingArea9}}<input type="text" name="writingArea9"  id="writingArea9" value=" "/></span>
-          <span>Toplam Tutar: <input type="text" name="paymentTotal" placeholder="Hesap Numarası" id="paymentTotal" value="0"/></span>
+          <span>Açıklama Başlığı: <input type="text" placeholder="Açıklama Başlığı" name="writingAreaTitle" id="writingAreaTitle"/></span>
+          <span>{{printingFormData[printFANum].writingArea1}}<input type="text" placeholder="{{printingFormData[printFANum].writingArea1}}" name="writingArea1" id="writingArea1"/></span>
+          <span>{{printingFormData[printFANum].writingArea2}}<input type="text" placeholder="{{printingFormData[printFANum].writingArea2}}" name="writingArea2" id="writingArea2"/></span>
+          <span>{{printingFormData[printFANum].writingArea3}}<input type="text" placeholder="{{printingFormData[printFANum].writingArea3}}" name="writingArea3" id="writingArea3"/></span>
+          <span>{{printingFormData[printFANum].writingArea4}}<input type="text" placeholder="{{printingFormData[printFANum].writingArea4}}" name="writingArea4" id="writingArea4"/></span>
+          <span [ngClass]="printingFormData[printFANum].writingArea5 == '' ? 'd-none' : ''">{{printingFormData[printFANum].writingArea5}}<input type="text" placeholder="{{printingFormData[printFANum].writingArea5}}" name="writingArea5" id="writingArea5"/></span>
+          <span [ngClass]="printingFormData[printFANum].writingArea6 == '' ? 'd-none' : ''">{{printingFormData[printFANum].writingArea6}}<input type="text" placeholder="{{printingFormData[printFANum].writingArea6}}" name="writingArea6" id="writingArea6"/></span>
+          <span [ngClass]="printingFormData[printFANum].writingArea7 == '' ? 'd-none' : ''">{{printingFormData[printFANum].writingArea7}}<input type="text" placeholder="{{printingFormData[printFANum].writingArea7}}" name="writingArea7"  id="writingArea7"/></span>
+          <span [ngClass]="printingFormData[printFANum].writingArea8 == '' ? 'd-none' : ''">{{printingFormData[printFANum].writingArea8}}<input type="text" placeholder="{{printingFormData[printFANum].writingArea8}}" name="writingArea8"  id="writingArea8"/></span>
+          <span [ngClass]="printingFormData[printFANum].writingArea9 == '' ? 'd-none' : ''">{{printingFormData[printFANum].writingArea9}}<input type="text" placeholder="{{printingFormData[printFANum].writingArea9}}" name="writingArea9"  id="writingArea9"/></span>
+          <span>Toplam Tutar: <input type="text" name="paymentTotal" placeholder="Toplam Tutar" id="paymentTotal"/></span>
         </div>
       </div>
       <div *ngIf="printType === 'invoice'">
-        <div class="d-flex flex-column w-50">
-          <span>Şirket Adı: <input type="text" name="dealerCompanyName" placeholder="Şehir" /></span>
-          <span>Şirketin Bağlı Olduğu Şehir: <input type="text" name="dealerAddressCity" placeholder="Şehir" /></span>
-          <span>Şirketin Bağlı Olduğu İlçe: <input type="text" name="dealerAddressCounty" placeholder="İlçe" /></span>
-          <span>Cadde / Sokak / No: <input type="text" name="dealerAddress" placeholder="Açık Adres" /></span>
-          <span>Şirket Telefon: <input type="text" name="dealerPhoneNumber" placeholder="IBAN" /></span>
-          <span>Şirket Mail: <input type="text" name="dealerMailAddress" placeholder="Şube Adı" /></span>
-          <span>Şirket VKN: <input type="text" name="dealerVKN" placeholder="Hesap Numarası" /></span>
-          <span>Şirket Ticaret No: <input type="text" name="dealerTradeNumber" placeholder="Hesap Numarası" /></span>
+        <div class="form-invoice">
+          <div class="d-flex flex-column w-50">
+            <span>Şirket Adı: <input type="text" name="dealerCompanyName" placeholder="Şirket Adı" id="dealerCompanyName" /></span>
+            <span>Bağlı Olduğu Şehir: <input type="text" name="dealerAddressCity" placeholder="Şehir" id="dealerAddressCity" /></span>
+            <span>Bağlı Olduğu İlçe: <input type="text" name="dealerAddressCounty" placeholder="İlçe" id="dealerAddressCounty" /></span>
+            <span>Cadde / Sokak / No: <input type="text" name="dealerAddress" placeholder="Cadde/Sokak/No" id="dealerAddress" /></span>
+            <span>Şirket Telefon: <input type="text" name="dealerPhoneNumber" placeholder="Şirket Telefon" id="dealerPhoneNumber" /></span>
+            <span>Şirket Mail: <input type="text" name="dealerMailAddress" placeholder="Şirket Mail" id="dealerMailAddress" /></span>
+            <span>Şirket VKN: <input type="text" name="dealerVKN" placeholder="Şirket VKN" id="dealerVKN"/></span>
+            <span>Şirket Ticaret No: <input type="text" name="dealerTradeNumber" placeholder="Şirket Ticaret Numarası" id="dealerTradeNumber" /></span>
+          </div>
+          <div class="d-flex flex-column w-50 ml-3">
+            <span>Müşteri Adı: <input type="text" name="customerName" placeholder="Müşteri Adı" id="customerName" /></span>
+            <span>Müşteri Soyadı: <input type="text" name="customerSurname" placeholder="Müşteri Soyadı" id="customerSurname" /></span>
+            <span>Bağlı Olduğu Şehir: <input type="text" name="customerAddressCity" placeholder="Şehir" id="customerAddressCity" /></span>
+            <span>Bağlı Olduğu İlçe: <input type="text" name="customerAddressCounty" placeholder="İlçe" id="customerAddressCounty" /></span>
+            <span>Cadde / Sokak / No: <input type="text" name="customerAddress" placeholder="Cadde/Sokak/No" id="customerAddress" /></span>
+            <span>Şirket Telefon: <input type="text" name="customerPhoneNumber" placeholder="Müşteri Telefon" id="customerPhoneNumber" /></span>
+            <span>Şirket Mail: <input type="text" name="customerMailAddress" placeholder="Müşteri Mail" id="customerMailAddress" /></span>
+            <span>Şirket TCKN: <input type="text" name="customerTCKN" placeholder="Müşteri TCKN" id="customerTCKN" /></span>
+          </div>
         </div>
-        <div class="d-flex flex-column w-50">
-          <span>Müşteri Adı: <input type="text" name="customerName" placeholder="Şehir" /></span>
-          <span>Müşteri Soyadı: <input type="text" name="customerSurname" placeholder="Şehir" /></span>
-          <span>Müşterinin Bağlı Olduğu Şehir: <input type="text" name="customerAddressCity" placeholder="Şehir" /></span>
-          <span>Müşterinin Bağlı Olduğu İlçe: <input type="text" name="customerAddressCounty" placeholder="İlçe" /></span>
-          <span>Cadde / Sokak / No: <input type="text" name="customerAddress" placeholder="Açık Adres" /></span>
-          <span>Şirket Telefon: <input type="text" name="customerPhoneNumber" placeholder="IBAN" /></span>
-          <span>Şirket Mail: <input type="text" name="customerMailAddress" placeholder="Şube Adı" /></span>
-          <span>Şirket TCKN: <input type="text" name="customerTCKN" placeholder="Hesap Numarası" /></span>
+        <div class="form-inv-products">
+          <div>
+            <p>Ürün sayısı Seç:</p>
+            <div class="w-100 d-flex justify-content-center mt-2">
+              <select class="product-num" name="product-num" id="product-num" (change)="onChangeSelect($event)">
+                <option value="0">Ürün Sayısı</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+              <table class="product-table">
+                <tr>
+                  <td>Ürün Adı</td>
+                  <td>Birim Fiyatı</td>
+                  <td>Ürün Miktarı</td>
+                </tr>
+                <tr *ngFor="let item of productNumber;let i = index">
+                  <td><input type="text" placeholder="Ürün Adı"  [id]="'productTableName'+i"/> </td>
+                  <td><input type="text" placeholder="Birim Fiyatı"  [id]="'productTablePrice'+i" /></td>
+                  <td><input type="text" placeholder="Ürün Miktarı"  [id]="'productTableAmount'+i" /></td>
+                </tr>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="d-flex justify-content-center w-100 align-items-end" style="height: 20%">
-      <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(3)"/>
-      <input type="button" name="next" class="next action-button" value="Next" (click)="onSubmit(3)"/>
+      <input type="button" name="previous" class="previous action-button" value="Geri" (click)="onPrevious(3)"/>
+      <input type="button" name="next" class="next action-button" value="İleri" (click)="onNext(3)"/>
     </div>
   </fieldset>
-  <fieldset>
+  <fieldset style="height: 400px">
     <div style="height: 10%">
-      <h2 class="fs-title">Completed</h2>
+      <h2 class="fs-title mb-3">Basım Al</h2>
     </div>
     <div style="height: 70%">
+      <div class="complete-text" *ngIf="completed === 0">
+        <span class="text1" style="color: #679b9b !important;">Basım Alabilirsiniz</span>
+        <span class="text2" style="color: #ff9a76 !important;">
+            Bilgileriniz Hazırlandı
+          </span>
+      </div>
+      <div class="spinner-border text-secondary" role="status" style="width: 100px;height: 100px" *ngIf="completed === 1">
+      </div>
+      <div class="loading loading02" style="top: 20px" *ngIf="completed === 1">
+        <span>Y</span>
+        <span>Ü</span>
+        <span>K</span>
+        <span>L</span>
+        <span>E</span>
+        <span>N</span>
+        <span>İ</span>
+        <span>Y</span>
+        <span>O</span>
+        <span>R...</span>
+      </div>
+      <div *ngIf="completed === 2">
+        <div class="swal-icon swal-icon--success">
+          <span class="swal-icon--success__line swal-icon--success__line--long"></span>
+          <span class="swal-icon--success__line swal-icon--success__line--tip"></span>
+          <div class="swal-icon--success__ring"></div>
+          <div class="swal-icon--success__hide-corners"></div>
+        </div>
+        <div class="complete-text">
+          <span class="text1"> Basım Alındı</span>
+          <span class="text2">
+            Tamamlandı
+          </span>
+        </div>
+      </div>
+      <div *ngIf="completed === 3" class="d-flex justify-content-center align-items-center flex-column">
+        <div class="sa">
+          <div class="sa-error">
+            <div class="sa-error-x">
+              <div class="sa-error-left"></div>
+              <div class="sa-error-right"></div>
+            </div>
+            <div class="sa-error-placeholder"></div>
+            <div class="sa-error-fix"></div>
+          </div>
+        </div>
+        <h3 style="color: #F27474;font-weight: 600;font-size: 18px;line-height: 4px">Basım Alınamadı !</h3>
+
+      </div>
 
     </div>
     <div class="d-flex justify-content-center w-100 align-items-end" style="height: 20%">
-      <input type="button" name="previous" class="previous action-button" value="Previous" (click)="onPrevious(4)"/>
-      <input type="submit" name="submit" class="submit action-button" value="Submit" />
+      <input type="button" name="previous" class="previous action-button" value="Geri" (click)="onPrevious(4)"/>
+      <input type="submit" name="submit" class="submit action-button" value="Basım Al" (click)="onSubmit()"/>
     </div>
   </fieldset>
 </form>
