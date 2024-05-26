@@ -10,12 +10,16 @@ import {ToastrModule} from "ngx-toastr";
 import {MessageBoxService} from "./service/message-box.service";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
+import { UploadComponent } from './pages/upload/upload.component';
+import { UploadPanelComponent } from './components/upload-panel/upload-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    MultiStepComponent
+    MultiStepComponent,
+    UploadComponent,
+    UploadPanelComponent
   ],
   imports: [
     BrowserModule,

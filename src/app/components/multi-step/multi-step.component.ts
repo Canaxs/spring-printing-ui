@@ -39,7 +39,7 @@ export class MultiStepComponent implements OnInit {
 
   onNext(index: number) {
     console.log("İndex: "+index+" "+this.templateName);
-    if(index === -1 && this.templateName === null) {
+    if(index === 1 && this.templateName === null) {
         this.messageBox.error("Please select an edition model");
     }
     else {
