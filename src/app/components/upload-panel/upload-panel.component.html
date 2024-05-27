@@ -24,7 +24,7 @@
                 <div class="card blue">
                   <div class="title">Tüm Şablonlar</div>
                   <i class="zmdi zmdi-upload"></i>
-                  <div class="value">89</div>
+                  <div class="value">{{templateInfo.allTemplateNumber}}</div>
                   <div class="stat"><b>100</b>% Tüm Şablonlara Oranı</div>
                 </div>
               </div>
@@ -32,24 +32,24 @@
                 <div class="card green">
                   <div class="title">Makbuz Şablonları</div>
                   <i class="zmdi zmdi-upload"></i>
-                  <div class="value">5,990</div>
-                  <div class="stat"><b>4</b>% Tüm Şablonlara Oranı</div>
+                  <div class="value">{{templateInfo.allReceiptNumber}}</div>
+                  <div class="stat"><b>{{templateAllRate(templateInfo.allReceiptNumber)}}</b>% Tüm Şablonlara Oranı</div>
                 </div>
               </div>
               <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
                 <div class="card orange">
                   <div class="title">Fatura Şablonları</div>
                   <i class="zmdi zmdi-download"></i>
-                  <div class="value">$80,990</div>
-                  <div class="stat"><b>13</b>% Tüm Şablonlara Oranı</div>
+                  <div class="value">{{templateInfo.allInvoiceNumber}}</div>
+                  <div class="stat"><b>{{templateAllRate(templateInfo.allInvoiceNumber)}}</b>% Tüm Şablonlara Oranı</div>
                 </div>
               </div>
               <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
                 <div class="card red">
                   <div class="title">Süresi Dolmuş Şablonlar</div>
                   <i class="zmdi zmdi-download"></i>
-                  <div class="value">3</div>
-                  <div class="stat"><b>13</b>% Tüm Şablonlara Oranı</div>
+                  <div class="value">{{templateInfo.allExpiredTemplateNumber}}</div>
+                  <div class="stat"><b>{{templateAllRate(templateInfo.allExpiredTemplateNumber)}}</b>% Tüm Şablonlara Oranı</div>
                 </div>
               </div>
             </div>
@@ -122,9 +122,56 @@
               <input type="submit" name="submit" class="submit action-button" value="Kaydet" (click)="onSubmit()"/>
             </div>
           </div>
+          <div class="d-flex flex-column justify-content-center align-items-center template-back" *ngIf="!complete">
+
+            <div class="spinner-border text-white" role="status" style="width: 100px;height: 100px">
+            </div>
+            <div class="loading loading02" style="top: 20px">
+              <span>Y</span>
+              <span>Ü</span>
+              <span>K</span>
+              <span>L</span>
+              <span>E</span>
+              <span>N</span>
+              <span>İ</span>
+              <span>Y</span>
+              <span>O</span>
+              <span>R...</span>
+            </div>
+          </div>
         </div>
         <div id="fileDelete">
           <h2 class="header">Şablon Silme Ekranı</h2>
+          <div>
+            <table class="delete-table">
+              <thead>
+              <tr>
+                <td>Id</td>
+                <td>Template Name</td>
+                <td>Template ShortId</td>
+                <td>Template Type</td>
+                <td>Start Date</td>
+                <td>End Date</td>
+                <td>Is Active</td>
+              </tr>
+              </thead>
+              <tbody id="tbody-delete">
+              <tr *ngFor="let template of templateTable[0]">
+                <td>{{template.id}}</td>
+                <td>{{template.templateName}}</td>
+                <td>{{template.templateShortId}}</td>
+                <td>{{template.templateType}}</td>
+                <td>{{template.effectiveStartDate}}</td>
+                <td>{{template.effectiveEndDate}}</td>
+                <td>{{template.isActive}}</td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="mt-3 d-flex justify-content-center mr-1 align-items-center">
+            <span>Id : <input type="text" id="templateId" placeholder="Template Id" /></span>
+              <input type="submit" name="submit" class="delete action-button" value="Sil" (click)="onDelete()"/>
+            </div>
+          </div>
         </div>
         <div id="fileUpload">
           <h2 class="header">Şablon Güncelleme Ekranı</h2>

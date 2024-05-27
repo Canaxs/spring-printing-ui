@@ -242,7 +242,7 @@ body {
 .card {
   border-radius: 8px;
   color: white;
-  font-size: 13px;
+  font-size: 15px;
   padding: 10px;
   position: relative;
 
@@ -265,13 +265,15 @@ body {
 
   .title {
     display: inline-block;
-    font-size: 8px;
-    padding: 10px 10px 0;
+    text-align: center;
+    font-size: 10px;
+    padding: 5px 5px 0;
     text-transform: uppercase;
   }
 
   .value {
     font-size: 28px;
+    text-align: center;
     padding: 0 10px;
   }
 
@@ -411,13 +413,132 @@ body {
 }
 .submit:hover {
   background: white !important;
-  color: black;
-  border: 1px solid black;
+  color: #679b9b;
+  border: 1px solid #e6e6e6;
 }
 .file-i {
   color:green !important;
   background-color: green;
   font-size: 14px !important;
+}
+.template-back {
+  background: rgba(0,0,0,0.7);
+  position: absolute;
+  width: 100%;
+  height: 130%;
+  top: 0;
+}
+//Loading Css
+
+.loading02 {
+  z-index: 99;
+  span {
+    color: white;
+    animation: loading02 1.2s infinite alternate;
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i+1}) {
+        animation-delay: #{$i*.2}s;
+      }
+    }
+  }
+}
+.loading {
+  font-size: 30px;
+  position: relative;
+}
+@keyframes loading02 {
+  0% {
+    filter: blur(0);
+    opacity: 1;
+  }
+  50% {
+    filter: blur(1px);
+    opacity: 0.4;
+  }
+  75% {
+    filter: blur(2px);
+    opacity: 0.6;
+  }
+  100% {
+    filter: blur(3px);
+    opacity: 0.8;
+  }
+}
+
+//Table Delete
+
+.delete-table {
+  width: 100%;
+  font-size: 12px;
+  font-weight: 500;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.delete-table th ,td {
+  border: 1px solid;
+  padding: 0.5em;
+  text-align: left;
+  vertical-align: top;
+  font-weight: normal;
+}
+.delete-table thead,
+.delete-table tfoot,
+.delete-table tbody,
+.delete-table th,
+.delete-table td
+{
+  display: block;
+  width: 100%;
+}
+.delete-table thead,
+.delete-table tfoot,
+.delete-table tbody
+{
+  overflow-y: scroll;
+}
+.delete-table thead,
+.delete-table tfoot
+{
+  -ms-overflow-style: none;
+}
+.delete-table thead::-webkit-scrollbar,
+.delete-table tfoot::-webkit-scrollbar
+{
+  visibility: hidden;
+}
+.delete-table tbody
+{
+  max-height: 20em;
+  position: relative;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.delete-table tr
+{
+  display: flex;
+}
+
+.delete-table tbody th,
+.delete-table tbody td
+{
+  border-top: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.delete-table th:not(:last-child),
+.delete-table td:not(:last-child)
+{
+  border-right: none;
+}
+.delete {
+  transition: .5s ease;
+  border-radius: 10px;
+  background-color: #da4453;
+}
+.delete:hover {
+  border: 1px solid #e6e6e6;
+  background-color: white;
+  color: #da4453;
 }
 
 
