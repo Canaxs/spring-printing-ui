@@ -210,33 +210,6 @@ body {
   border-radius: 50%;
   background-color: rgb(214,214,214);
 }
-/*statusbar底部功能按钮*/
-.statusbar {
-  position: absolute;
-  bottom: 0;
-  border-top: 1px solid rgb(235,235,235);
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-.statusbar li {
-  list-style: none;
-}
-.statusbar a {
-  color: rgb(102,102,102);
-  text-decoration: none;
-  text-align: left;
-}
-.statusbar a:hover {
-  background-color: rgb(247,247,247);
-}
-.statusbar .profiles-setting, .statusbar .logout {
-  float: right;
-  border-left: 1px solid rgb(235,235,235);
-}
-.statusbar .profiles-setting a, .statusbar .logout a {
-  line-height: 50px;
-}
 //TopBar
 
 .main .topbar {
@@ -318,4 +291,133 @@ body {
     background-color: #D65B4A;
   }
 }
+
+// Upload File
+.card-upload {
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+  width: 250px;
+  height: 150px;
+  background-color: #ffffff;
+  padding: 10px 30px 40px;
+}
+
+.card-upload h3 {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.drop_box-upload {
+  display: flex;
+  height: 100px;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 3px dotted #a3a3a3;
+  border-radius: 5px;
+}
+
+.drop_box-upload h4 {
+  font-size: 11px;
+  font-weight: 400;
+  color: #2e2e2e;
+  margin-left: 0;
+}
+
+.drop_box-upload p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 8px;
+  margin-left: 0;
+  color: #a3a3a3;
+}
+
+.btn-upload {
+  text-decoration: none;
+  background-color: #005af0;
+  color: #ffffff;
+  width: 50%;
+  height: 70px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+  margin-left: 25%;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.btn-upload:hover{
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #005af0;
+  border: none;
+  outline: 1px solid #010101;
+}
+.card-filetype {
+  font-size: 13px;
+  font-weight: 400;
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.template-text {
+  width: 100px;
+  margin-left: 5px;
+  height: 30px;
+}
+.card-upload2 {
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+  width: 250px;
+  height: 150px;
+  background-color: #ffffff;
+}
+.card-upload2 p {
+  margin: 0;
+  font-size: 12px;
+}
+.file-select {
+  width: 100px;
+  margin-left: 5px;
+}
+.container-upload {
+  width: auto;
+}
+.date-class {
+  width: 100px;
+  height: 30px;
+  float: right;
+}
+.action-button {
+  width: 100px;
+  height: 50px;
+  background: #ff9a76;
+  font-weight: bold;
+  color: #fff;
+  transition: 150ms;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+.action-button:hover,
+.action-button:focus {
+  color: #fff;
+}
+.submit {
+  background: #679b9b !important;
+  transition: .5s ease;
+}
+.submit:hover {
+  background: white !important;
+  color: black;
+  border: 1px solid black;
+}
+.file-i {
+  color:green !important;
+  background-color: green;
+  font-size: 14px !important;
+}
+
 

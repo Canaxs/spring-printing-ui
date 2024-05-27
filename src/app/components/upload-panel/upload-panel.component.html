@@ -57,6 +57,71 @@
         </div>
         <div id="file">
           <h2 class="header">Şablon Yükleme Ekranı</h2>
+          <div class="content-file d-flex flex-column justify-content-center align-items-center">
+            <div class="row">
+              <div class="container-upload">
+                <div class="card-upload">
+                  <h3>HTML Dosyası Yükle</h3>
+                  <div class="drop_box-upload" id="html_dropbox">
+                    <header>
+                      <h4>Dosya Seçiniz</h4>
+                    </header>
+                    <p>Desteklenen Dosyalar : HTML</p>
+                    <input type="file" hidden accept=".html" id="htmlFileID" style="display: none;">
+                    <button class="btn-upload" (click)="onClickfileHtml()">Dosya Seç</button>
+                  </div>
+
+                </div>
+              </div>
+              <div class="container-upload">
+                <div class="card-upload">
+                  <h3>CSS Dosyası Yükle</h3>
+                  <div class="drop_box-upload" id="css_dropbox">
+                    <header>
+                      <h4>Dosya Seçiniz</h4>
+                    </header>
+                    <p>Desteklenen Dosyalar : CSS</p>
+                    <input type="file" hidden accept=".css" id="cssFileId" style="display: none;">
+                    <button class="btn-upload" (click)="onClickfileCss()">Dosya Seç</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="container-upload">
+                <div class="card-upload2 d-flex flex-column justify-content-center">
+                  <div class="d-flex justify-content-between mb-3 pl-2 pr-2 align-items-center">
+                    <p class="card-filetype">Dosya Tipi:</p>
+                    <select id="fileType" name="fileType" class="file-select">
+                      <option value="invoice">Invoice</option>
+                      <option value="receipt">Receipt</option>
+                    </select>
+                  </div>
+                  <div class="d-flex justify-content-between mt-3 pl-2 pr-2 align-items-center">
+                    <p class="card-filetype d-flex">Şablon İsmi:</p>
+                    <input type="text" id="templateName" name="templateName" class="template-text"/>
+                  </div>
+                </div>
+              </div>
+              <div class="container-upload">
+                <div class="card-upload2 d-flex flex-column justify-content-center">
+                  <p style="position: absolute;margin:0 0 120px 20px;">(Örnek Model: 08-05-2024 01:00:00) </p>
+                  <div class="d-flex justify-content-between mb-3 pl-2 pr-2 align-items-center">
+                    <p class="card-filetype">Başlangıç Tarihi:</p>
+                    <input type="text" id="startDate" name="startDate" class="date-class"/>
+                  </div>
+                  <div class="d-flex justify-content-between mt-3 pl-2 pr-2 align-items-center">
+                    <p class="card-filetype d-flex float-left">Bitiş Tarihi:</p>
+                    <input type="text" id="endDate" name="endDate" class="date-class"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <input type="submit" name="submit" class="submit action-button" value="Kaydet" (click)="onSubmit()"/>
+            </div>
+          </div>
         </div>
         <div id="fileDelete">
           <h2 class="header">Şablon Silme Ekranı</h2>
@@ -65,11 +130,6 @@
           <h2 class="header">Şablon Güncelleme Ekranı</h2>
         </div>
       </div>
-      <ul class="statusbar">
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
-        <li class="logout"><a href="" style="padding: 5px">Yenile</a></li>
-      </ul>
     </div>
   </div>
 </div>
