@@ -80,6 +80,7 @@ body {
 .mainContent>div {
   position: absolute;
   opacity: 0;
+  display: none;
   -webkit-transition:opacity 200ms linear;
   -moz-transition:opacity 200ms linear;
   -ms-transition:opacity 200ms linear;
@@ -88,6 +89,7 @@ body {
 /*通过opacity来切换不同的选项卡*/
 .mainContent>div:target {
   opacity: 1;
+  display: block;
 }
 .mainContent h2 {
   margin:1em 0;
@@ -540,5 +542,25 @@ body {
   background-color: white;
   color: #da4453;
 }
-
+.update {
+  transition: .5s ease;
+  border-radius: 10px;
+  background-color: mediumblue;
+  width: 70px;
+  height: 40px;
+  font-size: 9px;
+}
+.update:hover {
+  border: 1px solid #e6e6e6;
+  background-color: white;
+  color: mediumblue;
+}
+.update-table tbody{
+  max-height: 37em;
+}
+.modal-body-input {
+  width: 80%;
+  margin-left: 5%;
+  margin-bottom: 10px;
+}
 

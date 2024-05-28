@@ -12,4 +12,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onRouter() {
+    location.assign("upload#dashboard");
+  }
 }

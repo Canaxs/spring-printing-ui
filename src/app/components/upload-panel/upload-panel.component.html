@@ -147,15 +147,15 @@
               <thead>
               <tr>
                 <td>Id</td>
-                <td>Template Name</td>
-                <td>Template ShortId</td>
-                <td>Template Type</td>
-                <td>Start Date</td>
-                <td>End Date</td>
-                <td>Is Active</td>
+                <td>Şablon Adı</td>
+                <td>Şablon Kodu</td>
+                <td>Şablon Tipi</td>
+                <td>Başlangıç Tarihi</td>
+                <td>Bitiş Tarihi</td>
+                <td>Aktif</td>
               </tr>
               </thead>
-              <tbody id="tbody-delete">
+              <tbody>
               <tr *ngFor="let template of templateTable[0]">
                 <td>{{template.id}}</td>
                 <td>{{template.templateName}}</td>
@@ -175,6 +175,72 @@
         </div>
         <div id="fileUpload">
           <h2 class="header">Şablon Güncelleme Ekranı</h2>
+          <div>
+            <table class="delete-table update-table">
+              <thead>
+              <tr>
+                <td>Id</td>
+                <td>Şablon Adı</td>
+                <td>Şablon Kodu</td>
+                <td>Şablon Tipi</td>
+                <td>Başlangıç Tarihi</td>
+                <td>Bitiş Tarihi</td>
+                <td>Aktiflik Durumu</td>
+                <td>Güncelle</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let template of templateTable[0]">
+                <td>{{template.id}}</td>
+                <td>{{template.templateName}}</td>
+                <td>{{template.templateShortId}}</td>
+                <td>{{template.templateType}}</td>
+                <td>{{template.effectiveStartDate}}</td>
+                <td>{{template.effectiveEndDate}}</td>
+                <td>{{template.isActive ? "Aktif" : "Pasif"}}</td>
+                <td><input type="submit" name="submit" class="update action-button" data-toggle="modal" data-target="#exampleModal" value="Güncelle" (click)="onUpdateInput(template)"/></td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: gray">Şablon Güncelle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label style="display: block;font-weight: 500;font-size: 13px;color: gray">Id  </label>
+                      <input type="text" readonly value="{{updateTemplate.id}}" class="modal-body-input" />
+                    </div>
+                    <div>
+                      <label style="display: block;font-weight: 500;font-size: 13px;color: gray">Şablon Adı  </label>
+                      <input type="text" value="{{updateTemplate.templateName}}" class="modal-body-input" />
+                    </div>
+                    <div>
+                      <label style="display: block;font-weight: 500;font-size: 13px;color: gray">Başlangıç Tarihi (Örnek Model: 08-05-2024 15:00:00)  </label>
+                      <input type="text" value="{{updateTemplate.effectiveStartDate}}" class="modal-body-input" />
+                    </div>
+                    <div>
+                      <label style="display: block;font-weight: 500;font-size: 13px;color: gray">Bitiş Tarihi (Örnek Model: 08-06-2025 12:00:00)  </label>
+                      <input type="text" value="{{updateTemplate.effectiveEndDate}}" class="modal-body-input" />
+                    </div>
+                    <div>
+                      <label style="display: block;font-weight: 500;font-size: 13px;color: gray">Aktiflik Durumu (true veya false)  </label>
+                      <input type="text" value="{{updateTemplate.isActive}}" class="modal-body-input" />
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <button type="button" class="btn btn-primary" (click)="onUpdateSubmit()">Değişiklikleri Kaydet</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

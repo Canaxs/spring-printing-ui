@@ -12,4 +12,8 @@ export class UploadComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onRouter() {
+    location.assign("home");
+  }
+
 }

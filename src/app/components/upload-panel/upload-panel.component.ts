@@ -18,6 +18,13 @@ export class UploadPanelComponent implements OnInit {
   complete: boolean = true;
   templateInfo: TemplateInfo;
   templateTable: any[] = [];
+  updateTemplate = {
+    id: "",
+    isActive: "",
+    templateName: "",
+    effectiveStartDate: "",
+    effectiveEndDate: ""
+  };
 
   constructor(private http: HttpClient,private messageBox:  MessageBoxService) {
   }
@@ -88,8 +95,6 @@ export class UploadPanelComponent implements OnInit {
   }
 
   async getTemplateAll() {
-    const format = 'dd/MM/yyyy';
-    const locale = 'en-US';
     let headers = new HttpHeaders();
     headers = headers.set('Accept', 'application/json');
     headers = headers.set('Authorization','Basic cHJpbnQ6cHJpbnQ=');
@@ -115,5 +120,28 @@ export class UploadPanelComponent implements OnInit {
         location.reload();
       },500)
     })
+  }
+
+  onUpdateInput(template) {
+    this.updateTemplate = {
+      id: template.id,
+      isActive: template.isActive,
+      templateName: template.templateName,
+      effectiveStartDate: template.effectiveStartDate,
+      effectiveEndDate: template.effectiveEndDate
+    }
+    console.log(this.updateTemplate);
+  }
+  onUpdateSubmit() {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/json');
+    headers = headers.set('Authorization','Basic cHJpbnQ6cHJpbnQ=');
+    this.http.post(environment.baseUrl+"template/update",this.updateTemplate,{headers: headers,responseType: "json"})
+      .subscribe((res) => {
+      },() => {
+        this.messageBox.success("Şablon güncellenirken hata oluştu");
+      }, () => {
+        this.messageBox.success("Başarıyla Güncellendi");
+      })
   }
 }
