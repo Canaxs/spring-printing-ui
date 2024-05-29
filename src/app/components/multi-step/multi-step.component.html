@@ -30,7 +30,7 @@
       <div class="carousel slide h-100" data-ride="carousel" id="carouselExampleControls" *ngIf="printModel">
         <div class="carousel-inner h-100">
           <div class="carousel-item h-100" *ngFor="let image of imageResponses;index as i" [ngClass]="i === 0 ? 'active' : ''">
-            <img [src]="'data:image/jpg;base64,'+image.imageByte" class="d-block w-100 slider-print" height="98%" alt="First slide">
+            <img [src]="'data:image/png;base64,'+image.imageByte" class="d-block w-100 slider-print" height="98%" alt="First slide">
             <div class="overlay-slider" (click)="onClickSlider(image.templateName)">
               <p>Bu Modeli Seç</p>
             </div>
