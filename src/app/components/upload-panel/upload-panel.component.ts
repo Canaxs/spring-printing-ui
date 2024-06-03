@@ -6,6 +6,7 @@ import {ReceiptRequest} from "../../models/ReceiptRequest";
 import {TemplateInfo} from "../../models/templateInfo";
 import {TemplateTable} from "../../models/TemplateTable";
 import {formatDate} from "@angular/common";
+import $ from 'jquery';
 
 @Component({
   selector: 'app-upload-panel',

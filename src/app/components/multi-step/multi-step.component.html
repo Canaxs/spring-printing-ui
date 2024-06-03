@@ -30,7 +30,7 @@
       <div class="carousel slide h-100" data-ride="carousel" id="carouselExampleControls" *ngIf="printModel">
         <div class="carousel-inner h-100">
           <div class="carousel-item h-100" *ngFor="let image of imageResponses;index as i" [ngClass]="i === 0 ? 'active' : ''">
-            <img [src]="'data:image/png;base64,'+image.imageByte" class="d-block w-100 slider-print" height="98%" alt="First slide">
+            <img [src]="'data:image/png;base64,'+image.imageByte" class="d-block w-100 slider-print" height="98%" alt="First slide" style="width: 80% !important;margin-left: 10%">
             <div class="overlay-slider" (click)="onClickSlider(image.templateName)">
               <p>Bu Modeli Seç</p>
             </div>
@@ -135,9 +135,9 @@
             <span>Bağlı Olduğu Şehir: <input type="text" name="customerAddressCity" placeholder="Şehir" id="customerAddressCity" /></span>
             <span>Bağlı Olduğu İlçe: <input type="text" name="customerAddressCounty" placeholder="İlçe" id="customerAddressCounty" /></span>
             <span>Cadde / Sokak / No: <input type="text" name="customerAddress" placeholder="Cadde/Sokak/No" id="customerAddress" /></span>
-            <span>Şirket Telefon: <input type="text" name="customerPhoneNumber" placeholder="Müşteri Telefon" id="customerPhoneNumber" /></span>
-            <span>Şirket Mail: <input type="text" name="customerMailAddress" placeholder="Müşteri Mail" id="customerMailAddress" /></span>
-            <span>Şirket TCKN: <input type="text" name="customerTCKN" placeholder="Müşteri TCKN" id="customerTCKN" /></span>
+            <span>Müşteri Telefon: <input type="text" name="customerPhoneNumber" placeholder="Müşteri Telefon" id="customerPhoneNumber" /></span>
+            <span>Müşteri Mail: <input type="text" name="customerMailAddress" placeholder="Müşteri Mail" id="customerMailAddress" /></span>
+            <span>Müşteri TCKN: <input type="text" name="customerTCKN" placeholder="Müşteri TCKN" id="customerTCKN" /></span>
           </div>
         </div>
         <div class="form-inv-products">

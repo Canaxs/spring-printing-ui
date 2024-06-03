@@ -57,6 +57,69 @@
         </div>
         <div id="file">
           <h2 class="header">Şablon Yükleme Ekranı</h2>
+          <div class="upload-guide">
+            <button type="button" class="btn guide-button" data-toggle="modal" data-target="#exampleModal2">
+              <i class="bi bi-journal-bookmark-fill"></i>
+            </button>
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+              <div class="modal-dialog" role="document" style="max-width: 700px !important;">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">Dosya Kılavuzu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+
+                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel" data-interval="false">
+                      <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="2"></li>
+                      </ol>
+                      <div class="carousel-inner">
+                        <div class="carousel-item carousel-guide active">
+                          <img class="d-block" src="../../../../assets/invoice.JPG" alt="First slide">
+                          <div class="carousel-caption d-none d-md-block">
+                            <h5>Invoice HTML Dosyası Nasıl Oluşturulur</h5>
+                            <p>Yukarı gördüğünüz değişkenleri HTML Dosyanız içerisinde bulundurmanız gerekiyor. Aksi bir durumda Program Kontrol aşamasında
+                            hata verecektir.</p>
+                          </div>
+                        </div>
+                        <div class="carousel-item carousel-guide">
+                          <img class="d-block" src="../../../../assets/receipt.JPG" alt="Second slide">
+                          <div class="carousel-caption d-none d-md-block">
+                            <h5>Receipt HTML Dosyası Nasıl Oluşturulur</h5>
+                            <p>Yukarı gördüğünüz değişkenleri HTML Dosyanız içerisinde bulundurmanız gerekiyor. Aksi bir durumda Program Kontrol aşamasında
+                              hata verecektir.</p>
+                          </div>
+                        </div>
+                        <div class="carousel-item carousel-guide">
+                          <img class="d-block" src="../../../../assets/id.JPG" alt="Third slide">
+                          <div class="carousel-caption d-none d-md-block">
+                            <h5>Örnek HTML Dosyası</h5>
+                            <p>Bu örnekte görmüş olduğunuz gibi parametreleri kullanmak istediğiniz alanlarda ID olarak belirtmeniz yeterlidir.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carouselExampleIndicators2" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="content-file d-flex flex-column justify-content-center align-items-center">
             <div class="row">
               <div class="container-upload">
