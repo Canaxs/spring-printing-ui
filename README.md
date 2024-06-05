@@ -17,10 +17,6 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
 ## UI Screenshots
 
 * Printing Screen
@@ -63,6 +59,10 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
     <img src="src/assets/ui-shot/guide.JPG" alt="Logo" width="700" height="500">
   </a>
 </div>
+
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
