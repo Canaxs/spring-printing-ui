@@ -23,44 +23,44 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## UI Screenshots
 
-[Printing Screen]
+* Printing Screen
 
 <br />
 <div align="center">
   <a href="https://github.com/Canaxs/dotnet-blog-api">
-    <img src="src/assets/ui-shot/home.JPG" alt="Logo" width="500" height="300">
+    <img src="src/assets/ui-shot/home.JPG" alt="Logo" width="700" height="500">
   </a>
 </div>
 
-[Dashboard Screen]
+* Dashboard Screen
 <br />
 <div align="center">
   <a href="https://github.com/Canaxs/dotnet-blog-api">
-    <img src="src/assets/ui-shot/ekran1.JPG" alt="Logo" width="500" height="300">
+    <img src="src/assets/ui-shot/ekran1.JPG" alt="Logo" width="700" height="500">
   </a>
 </div>
 
-[Loading Screen]
+* Loading Screen
 <br />
 <div align="center">
   <a href="https://github.com/Canaxs/dotnet-blog-api">
-    <img src="src/assets/ui-shot/upload.JPG" alt="Logo" width="500" height="300">
+    <img src="src/assets/ui-shot/upload.JPG" alt="Logo" width="700" height="500">
   </a>
 </div>
 
-[Update Screen]
+* Update Screen
 <br />
 <div align="center">
   <a href="https://github.com/Canaxs/dotnet-blog-api">
-    <img src="src/assets/ui-shot/güncel.JPG" alt="Logo" width="500" height="300">
+    <img src="src/assets/ui-shot/güncel.JPG" alt="Logo" width="700" height="500">
   </a>
 </div>
 
-[Guide Screen]
+* Guide Screen
 <br />
 <div align="center">
   <a href="https://github.com/Canaxs/dotnet-blog-api">
-    <img src="src/assets/ui-shot/guide.JPG" alt="Logo" width="500" height="300">
+    <img src="src/assets/ui-shot/guide.JPG" alt="Logo" width="700" height="500">
   </a>
 </div>
 
