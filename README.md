@@ -6,9 +6,48 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## UI Screenshots
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+[Printing Screen]
+
+<br />
+<div align="center">
+  <a href="https://github.com/Canaxs/dotnet-blog-api">
+    <img src="src/assets/ui-shot/home.JPG" alt="Logo" width="500" height="300">
+  </a>
+</div>
+
+[Dashboard Screen]
+<br />
+<div align="center">
+  <a href="https://github.com/Canaxs/dotnet-blog-api">
+    <img src="src/assets/ui-shot/ekran1.JPG" alt="Logo" width="500" height="300">
+  </a>
+</div>
+
+[Loading Screen]
+<br />
+<div align="center">
+  <a href="https://github.com/Canaxs/dotnet-blog-api">
+    <img src="src/assets/ui-shot/upload.JPG" alt="Logo" width="500" height="300">
+  </a>
+</div>
+
+[Update Screen]
+<br />
+<div align="center">
+  <a href="https://github.com/Canaxs/dotnet-blog-api">
+    <img src="src/assets/ui-shot/güncel.JPG" alt="Logo" width="500" height="300">
+  </a>
+</div>
+
+[Guide Screen]
+<br />
+<div align="center">
+  <a href="https://github.com/Canaxs/dotnet-blog-api">
+    <img src="src/assets/ui-shot/guide.JPG" alt="Logo" width="500" height="300">
+  </a>
+</div>
 
 ## Build
 
