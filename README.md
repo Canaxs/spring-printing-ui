@@ -1,3 +1,18 @@
+[![Contributors][contributors-shield]][contributors-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/Canaxs/dotnet-blog-api">
+    <img src="https://www.cdnlogo.com/logos/j/22/java.svg" alt="Logo" width="80" height="80">
+  </a>
+
+<h3 align="center">Spring Printing</h3>
+</div>
+
+
+
 # SpringPrintingUi
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
@@ -25,3 +40,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/Canaxs/spring-printing
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/mericcana/
